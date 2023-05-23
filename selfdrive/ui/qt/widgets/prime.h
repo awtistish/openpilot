@@ -78,7 +78,6 @@ public:
 private:
   PairingPopup *popup;
   QStackedWidget *mainLayout;
-  PrimeAdWidget *primeAd;
   PrimeUserWidget *primeUser;
 
 private slots:
