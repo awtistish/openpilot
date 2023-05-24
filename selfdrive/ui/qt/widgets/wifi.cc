@@ -2,6 +2,7 @@
 
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QPixmap>
 #include <QPushButton>
 
 WiFiPromptWidget::WiFiPromptWidget(QWidget *parent) : QFrame(parent) {
@@ -10,8 +11,13 @@ WiFiPromptWidget::WiFiPromptWidget(QWidget *parent) : QFrame(parent) {
   main_layout->setSpacing(32);
 
   QHBoxLayout *title_layout = new QHBoxLayout;
+  title_layout->setSpacing(32);
   {
-    // TODO: icon pixmap
+    QLabel *icon = new QLabel;
+    QPixmap *pixmap = new QPixmap("../assets/offroad/icon_wifi_strength_full.svg");
+    icon->setPixmap(pixmap->scaledToHeight(64, Qt::SmoothTransformation));
+    title_layout->addWidget(icon);
+
     QLabel *title = new QLabel(tr("Setup Wi-Fi"));
     title->setStyleSheet("font-size: 64px; font-weight: bold;");
     title_layout->addWidget(title);
