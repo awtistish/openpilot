@@ -241,15 +241,17 @@ SetupWidget::SetupWidget(QWidget* parent) : QFrame(parent) {
   QVBoxLayout *content_layout = new QVBoxLayout(content);
   content_layout->setContentsMargins(0, 0, 0, 0);
   content_layout->setSpacing(30);
-  content_layout->addWidget(primeUser = new PrimeUserWidget);
+
+  primeUser = new PrimeUserWidget;
+  content_layout->addWidget(primeUser);
+
   content_layout->addWidget(new WiFiPromptWidget);
   content_layout->addStretch();
+
   mainLayout->addWidget(content);
 
-  mainLayout->setCurrentIndex(1);
-  if (!uiState()->primeType()) {
-    primeUser->setVisible(false);
-  }
+  primeUser->setVisible((bool)uiState()->primeType());
+  mainLayout->setCurrentWidget(content);
 
   setFixedWidth(750);
   setStyleSheet(R"(
@@ -291,11 +293,7 @@ void SetupWidget::replyFinished(const QString &response, bool success) {
   } else {
     popup->reject();
 
-    if (prime_type) {
-      primeUser->setVisible(true);
-    } else {
-      primeUser->setVisible(false);
-    }
+    primeUser->setVisible((bool)prime_type);
     mainLayout->setCurrentIndex(1);
   }
 }
