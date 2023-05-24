@@ -151,6 +151,12 @@ OffroadHome::OffroadHome(QWidget* parent) : QFrame(parent) {
     QStackedWidget *stack = new QStackedWidget();
     stack->addWidget(new DriveStats);
     stack->addWidget(new PrimeAdWidget);
+
+    stack->setCurrentIndex(uiState()->primeType() ? 0 : 1);
+    connect(uiState(), &UIState::primeTypeChanged, [=](int prime_type) {
+      stack->setCurrentIndex(prime_type ? 0 : 1);
+    });
+
     left_column->addWidget(stack, 1);
     home_layout->addWidget(left_widget, 1);
 
