@@ -14,6 +14,7 @@
 #include "selfdrive/ui/qt/request_repeater.h"
 #include "selfdrive/ui/qt/util.h"
 #include "selfdrive/ui/qt/qt_window.h"
+#include "selfdrive/ui/qt/widgets/wifi.h"
 
 using qrcodegen::QrCode;
 
@@ -235,13 +236,18 @@ SetupWidget::SetupWidget(QWidget* parent) : QFrame(parent) {
   outer_layout->setContentsMargins(0, 0, 0, 0);
   outer_layout->addWidget(mainLayout);
 
-  primeUser = new PrimeUserWidget;
-  mainLayout->addWidget(primeUser);
+  QWidget *content = new QWidget;
+  QVBoxLayout *content_layout = new QVBoxLayout(content);
+  content_layout->setContentsMargins(0, 0, 0, 0);
+  content_layout->setSpacing(30);
+  content_layout->addWidget(primeUser = new PrimeUserWidget);
+  content_layout->addWidget(new WiFiPromptWidget);
+  content_layout->addStretch();
+  mainLayout->addWidget(content);
 
-  if (uiState()->primeType()) {
-    mainLayout->setCurrentWidget((QWidget*)primeUser);
-  } else {
-    mainLayout->setVisible(false);
+  mainLayout->setCurrentIndex(1);
+  if (!uiState()->primeType()) {
+    primeUser->setVisible(false);
   }
 
   setFixedWidth(750);
@@ -281,15 +287,14 @@ void SetupWidget::replyFinished(const QString &response, bool success) {
 
   if (!json["is_paired"].toBool()) {
     mainLayout->setCurrentIndex(0);
-    mainLayout->setVisible(true);
   } else {
     popup->reject();
 
     if (prime_type) {
-      mainLayout->setCurrentWidget(primeUser);
-      mainLayout->setVisible(true);
+      primeUser->setVisible(true);
     } else {
-      mainLayout->setVisible(false);
+      primeUser->setVisible(false);
     }
+    mainLayout->setCurrentIndex(1);
   }
 }
