@@ -235,6 +235,7 @@ SetupWidget::SetupWidget(QWidget* parent) : QFrame(parent) {
   QVBoxLayout *outer_layout = new QVBoxLayout(this);
   outer_layout->setContentsMargins(0, 0, 0, 0);
   outer_layout->addWidget(mainLayout);
+  outer_layout->addStretch();
 
   QWidget *content = new QWidget;
   QVBoxLayout *content_layout = new QVBoxLayout(content);
