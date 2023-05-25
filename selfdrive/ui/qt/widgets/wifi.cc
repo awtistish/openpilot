@@ -56,8 +56,8 @@ WiFiPromptWidget::WiFiPromptWidget(QWidget *parent) : QFrame(parent) {
 
   // Uploading data
   QFrame *uploading = new QFrame;
-  uploading->setContentsMargins(32, 0, 32, 16);
   QVBoxLayout *uploading_layout = new QVBoxLayout(uploading);
+  uploading_layout->setContentsMargins(40, 40, 40, 40);
   {
     QLabel *icon = new QLabel;
     QPixmap *pixmap = new QPixmap("../assets/offroad/icon_wifi_uploading.svg");
@@ -66,16 +66,14 @@ WiFiPromptWidget::WiFiPromptWidget(QWidget *parent) : QFrame(parent) {
 
     QLabel *title = new QLabel(tr("Uploading your training data"));
     title->setAlignment(Qt::AlignHCenter);
-    title->setStyleSheet("font-size: 64px; font-weight: bold;");
+    title->setStyleSheet("font-size: 64px; font-weight: 600;");
     title->setWordWrap(true);
     uploading_layout->addWidget(title, 0, Qt::AlignHCenter);
 
     QLabel *desc = new QLabel(tr("Your driving data helps improve openpilot"));
-    desc->setStyleSheet("font-size: 34px;");
+    desc->setStyleSheet("font-size: 34px; font-weight: 400;");
     desc->setWordWrap(false);
     uploading_layout->addWidget(desc, 0, Qt::AlignHCenter);
-
-    uploading_layout->addStretch();
   }
   stack->addWidget(uploading);
 
