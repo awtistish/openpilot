@@ -522,10 +522,6 @@ location set</source>
         <source>CONNECT.COMMA.AI</source>
         <translation>CONNECT.COMMA.AI</translation>
     </message>
-    <message>
-        <source>COMMA POINTS</source>
-        <translation>คะแนน COMMA</translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>

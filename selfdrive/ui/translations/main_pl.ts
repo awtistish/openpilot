@@ -506,10 +506,6 @@ nie zostało ustawione</translation>
         <source>CONNECT.COMMA.AI</source>
         <translation>CONNECT.COMMA.AI</translation>
     </message>
-    <message>
-        <source>COMMA POINTS</source>
-        <translation>COMMA POINTS</translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>
